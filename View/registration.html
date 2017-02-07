@@ -1,0 +1,39 @@
+<div class="login">
+    <h1>Sign Up</h1>
+    <form action="/registration" method="post" enctype="multipart/form-data">
+        <div class="input-block">
+            <label for="nickname">Nickname</label>
+            <input class="form-control" type="text" id="nickname" name="nickname" max="64" required/>
+            <?php if (isset($errors) && isset($errors['name'])): ?>
+            <p>
+                <span style="color:red"><?= $errors['name'] ?></span>
+            </p>
+            <?php endif; ?>
+        </div>
+        <div class="input-block">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password" required/>
+            <?php if (isset($errors) && isset($errors['password'])): ?>
+            <p>
+                <span style="color:red"><?= $errors['password'] ?></span>
+            </p>
+            <?php endif; ?>
+        </div>
+        <div class="input-block">
+            <label for="confirm">Confirm password</label>
+            <input class="form-control" type="password" id="confirm" name="confirm" required/>
+        </div>
+        <div class="input-block">
+            <label for="img">Image</label>
+            <input type="file" id="img" name="avatar" accept="image/*"/>
+
+            <?php if (isset($errors) && isset($errors['image'])): ?>
+            <p>
+                <span style="color:red"><?= $errors['image'] ?></span>
+            </p>
+            <?php endif; ?>
+        </div>
+        <button class="btn bg-success" type="submit">Register</button>
+    </form>
+    <p class="registation-helper">If you have an account, <a href="/login">Back</a></p>
+</div>

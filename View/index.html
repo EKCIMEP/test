@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<base href="/">
+<meta charset="UTF-8">
+<title>Title</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css"/>
+<!-- Optional theme -->
+<link rel="stylesheet" href="/public/bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/public/css/style.css">
+
+<script src="/public/js/jquery.min.js"></script>
+<script src="/public/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+<?php
+        if (isset($template)) {
+            include($template);
+        }
+    ?>
+</div>
+<?php if (isset($comments)) { ?>
+<div class="main-container">
+    <div class="container">
+        <div class="comment-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#comments-list" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">
+                Comments</h4></a></li>
+            <li><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="comments-list">
+                <div id="comments-logout">
+
+                </div>
+                <div class="text-center">
+                    <button id="load-more" class="btn btn-success btn-circle text-uppercase" onclick="loadComments();">Load more
+                        comments
+                    </button>
+                </div>
+            </div>
+            <div class="tab-pane" id="add-comment">
+                <form onsubmit="event.preventDefault();addComment(this);" class="form-horizontal" id="commentForm"
+                      role="form">
+                    <div class="form-group">
+                        <label for="comment" class="col-sm-2 control-label">Comment</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" name="comment" id="comment" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span
+                                    class="glyphicon glyphicon-send"></span> Summit comment
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        var comments = JSON.parse('<?= json_encode($comments); ?>');
+
+        commentsBody(comments);
+    };
+
+</script>
+<?php } ?>
+<script type="text/javascript" src="/public/js/custom.js"></script>
+</body>
+</html>
